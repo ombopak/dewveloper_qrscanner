@@ -20,9 +20,9 @@ class _ScannerPageState extends State<ScannerPage> {
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
-      controller.pauseCamera();
+      controller?.pauseCamera();
     }
-    controller.resumeCamera();
+    controller?.resumeCamera();
   }
 
   @override
@@ -39,8 +39,9 @@ class _ScannerPageState extends State<ScannerPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     if (result != null)
-                      Text(
-                          'Barcode Type: ${describeEnum(result.format)}   Data: ${result.code}')
+                      (result?.code != null)
+                          ? Text('$result.code')
+                          : Container()
                     else
                       Text('Scan a code'),
                     Container(
@@ -88,7 +89,7 @@ class _ScannerPageState extends State<ScannerPage> {
                           child: ElevatedButton(
                               onPressed: () {
                                 Clipboard.setData(
-                                    new ClipboardData(text: '${result.code}'));
+                                    new ClipboardData(text: '${result?.code}'));
                                 final snackBar = SnackBar(
                                     duration: Duration(seconds: 2),
                                     backgroundColor: Colors.white,
@@ -137,8 +138,8 @@ class _ScannerPageState extends State<ScannerPage> {
     });
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        result = scanData;        
-        Get.to(ResultScanPage(), arguments: scanData);
+        result = scanData;
+        Get.off(ResultScanPage(), arguments: scanData);
       });
     });
   }

@@ -10,11 +10,17 @@ class SplashPage extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(bottom: 20),
-              child: Text('QR and Barcode Scan', style: mainTextStyle.copyWith(fontSize: 24,color: Colors.black),),
+              child: Text(
+                'QR and Barcode Scan',
+                style:
+                    mainTextStyle.copyWith(fontSize: 24, color: Colors.black),
+              ),
             ),
             Container(
               margin: EdgeInsets.only(bottom: 40),
-              child: Text('Fast easy and free ',style: mainTextStyle.copyWith(fontSize: 16, color: Colors.black54)),
+              child: Text('Fast easy and free ',
+                  style: mainTextStyle.copyWith(
+                      fontSize: 16, color: Colors.black54)),
             ),
             Container(
               height: 50,
@@ -28,13 +34,8 @@ class SplashPage extends StatelessWidget {
                   onPressed: () {
                     Get.to(ScannerPage());
                   },
-                  child: Text("Lets Get Started", style: mainTextStyle)
-                  
-                  ),
-              
+                  child: Text("Lets Get Started", style: mainTextStyle)),
             ),
-            
-
           ],
         ),
       ),
